@@ -1,0 +1,13 @@
+.toast {
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.toast-header {
+    border-radius: 12px 12px 0 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.toast-body {
+    border-radius: 0 0 12px 12px;
+}

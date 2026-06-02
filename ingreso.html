@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de ingreso | SCID</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/variables.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/navbar.css" rel="stylesheet">
+    <link href="css/internal.css" rel="stylesheet">
+    <link href="css/ingreso.css" rel="stylesheet">
+</head>
+<body class="app-page">
+    <div id="app-layout"></div>
+
+    <main class="app-main">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="header-info">
+                    <span class="page-icon"><i class="fas fa-door-open"></i></span>
+                    <div>
+                        <h1>Registro de ingreso</h1>
+                        <p class="page-subtitle" id="pageTime"></p>
+                        <p class="page-scid">SCID · Portería · Carné QR o documento</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ingreso-grid">
+                <div>
+                    <div class="content-card ingreso-tabs-card">
+                        <div class="ingreso-tabs">
+                            <button type="button" class="ingreso-tab" data-tab="qr">
+                                <i class="fas fa-qrcode"></i> Escanear carné
+                            </button>
+                            <button type="button" class="ingreso-tab active" data-tab="manual">
+                                <i class="fas fa-id-card"></i> Por documento
+                            </button>
+                        </div>
+
+                        <div id="panelQr" class="d-none">
+                            <p class="qr-instruccion">Apunte la cámara al código QR del carné institucional del docente.</p>
+                            <div id="qrReader" class="qr-reader"></div>
+                            <p id="qrEstado" class="qr-estado">Presiona iniciar cámara para comenzar.</p>
+                            <div class="qr-botones">
+                                <button type="button" class="btn-qr btn-qr-start" id="btnIniciarCamara">
+                                    <i class="fas fa-camera"></i> Iniciar cámara
+                                </button>
+                                <button type="button" class="btn-qr btn-qr-stop" id="btnDetenerCamara">
+                                    <i class="fas fa-stop"></i> Detener
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="panelManual">
+                            <p class="qr-instruccion">Ingrese el documento del docente, busque y complete el formulario de registro.</p>
+                            <div class="form-group">
+                                <label class="form-label" for="documento">Número de documento</label>
+                                <div class="doc-buscar-row">
+                                    <input type="text" class="form-control" id="documento" placeholder="Número de documento" maxlength="12">
+                                    <button type="button" class="btn-buscar-doc" id="btnBuscarDoc">Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-card ingreso-form-card">
+                        <h3>Datos del registro</h3>
+                        <form id="ingresoForm">
+                            <div class="form-group">
+                                <label class="form-label" for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" readonly placeholder="Se identifica con QR o documento">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="rol">Rol</label>
+                                <input type="text" class="form-control" id="rol" readonly>
+                            </div>
+                            <div class="form-group d-none">
+                                <input type="hidden" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="area">Área / bloque</label>
+                                <select class="form-select" id="area" required>
+                                    <option value="">Seleccionar...</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="tipo">Tipo de movimiento</label>
+                                <select class="form-select" id="tipo">
+                                    <option value="Entrada">Entrada</option>
+                                    <option value="Salida">Salida</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="observacion">Observación (opcional)</label>
+                                <input type="text" class="form-control" id="observacion" placeholder="Ej: visita, reemplazo...">
+                            </div>
+                            <p class="operador-info">
+                                <i class="fas fa-user-shield"></i>
+                                Operador: <span id="operadorNombre"></span>
+                            </p>
+                            <button type="submit" class="btn-registrar">
+                                <i class="fas fa-check"></i> Registrar entrada / salida
+                            </button>
+                            <div id="formMensaje" class="form-mensaje"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content-card recientes-card">
+                    <h3>Últimos registros</h3>
+                    <div id="listaRecientes"></div>
+                    <a href="historial.html" class="link-historial">Ver historial completo →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="app-footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script src="js/modules/config.js"></script>
+    <script src="js/modules/data/appData.js"></script>
+    <script src="js/modules/utils.js"></script>
+    <script src="js/modules/models/AccesoModel.js"></script>
+    <script src="js/modules/data/DataStore.js"></script>
+    <script src="js/modules/models/AuthModel.js"></script>
+    <script src="js/modules/components/QrScanner.js"></script>
+    <script src="js/modules/components/Layout.js"></script>
+    <script src="js/modules/components/Footer.js"></script>
+    <script src="js/modules/controllers/IngresoController.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#25E7FF"/>
+      <stop offset="100%" stop-color="#1F5DFF"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6E7BFF"/>
+      <stop offset="100%" stop-color="#2146D0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- base layers -->
+  <polygon points="120,330 256,240 392,330 256,420" fill="url(#g1)" opacity="0.85"/>
+  <polygon points="120,285 256,195 392,285 256,375" fill="url(#g2)" opacity="0.9"/>
+  <polygon points="120,240 256,150 392,240 256,330" fill="url(#g1)"/>
+
+  <!-- shield -->
+  <path d="M256 70
+           C220 95,180 90,150 80
+           L150 235
+           C150 330,215 392,256 410
+           C297 392,362 330,362 235
+           L362 80
+           C332 90,292 95,256 70Z"
+        fill="url(#g1)" stroke="#7AF6FF" stroke-width="3"/>
+
+  <!-- keyhole -->
+  <circle cx="256" cy="200" r="26" fill="#1A0A5A"/>
+  <path d="M244 220 L268 220 L278 300 L234 300 Z" fill="#1A0A5A"/>
+</svg>

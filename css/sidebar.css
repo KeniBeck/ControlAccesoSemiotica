@@ -1,0 +1,115 @@
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 200;
+    display: none;
+}
+
+.sidebar-overlay.is-visible {
+    display: block;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    max-width: 85vw;
+    height: 100vh;
+    background: #fff;
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.2s;
+}
+
+.sidebar.is-open {
+    transform: translateX(0);
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.sidebar-logo {
+    width: 36px;
+    height: 36px;
+}
+
+.sidebar-close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #F3F4F6;
+    border-radius: 6px;
+    color: #6B7280;
+    cursor: pointer;
+}
+
+.sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.75rem;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 6px;
+    color: #111827;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.sidebar-link i {
+    width: 18px;
+    text-align: center;
+    color: #6B7280;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+    background: #EFF6FF;
+    color: var(--primary-blue);
+}
+
+.sidebar-link.active i,
+.sidebar-link:hover i {
+    color: var(--primary-blue);
+}
+
+.sidebar-footer {
+    padding: 0.75rem;
+    border-top: 1px solid #E5E7EB;
+}
+
+.sidebar-logout {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #DC2626;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.sidebar-logout:hover {
+    background: #FEF2F2;
+}
+
+body.sidebar-open {
+    overflow: hidden;
+}

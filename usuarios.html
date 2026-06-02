@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios | Control de Acceso</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/variables.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/navbar.css" rel="stylesheet">
+    <link href="css/internal.css" rel="stylesheet">
+</head>
+<body class="app-page">
+    <div id="app-layout"></div>
+
+    <main class="app-main">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="header-info">
+                    <span class="page-icon"><i class="fas fa-users"></i></span>
+                    <div>
+                        <h1>Usuarios</h1>
+                        <p class="page-subtitle" id="pageTime"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box stat-blue">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-info">
+                        <p class="stat-number" id="statTotal">0</p>
+                        <p class="stat-label">Total usuarios</p>
+                    </div>
+                </div>
+                <div class="stat-box stat-green">
+                    <div class="stat-icon"><i class="fas fa-user-check"></i></div>
+                    <div class="stat-info">
+                        <p class="stat-number" id="statActivos">0</p>
+                        <p class="stat-label">Activos</p>
+                    </div>
+                </div>
+                <div class="stat-box stat-purple">
+                    <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="stat-info">
+                        <p class="stat-number" id="statDocentes">0</p>
+                        <p class="stat-label">Docentes</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>Directorio de usuarios</h3>
+                <div class="filters-bar">
+                    <input type="text" class="form-control search-box" id="searchUsuario" placeholder="Buscar por nombre, documento o correo...">
+                    <select class="form-select" id="filterRol">
+                        <option value="todos">Todos los roles</option>
+                        <option value="estudiante">Estudiante</option>
+                        <option value="docente">Docente</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Documento</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th>Último acceso</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usuariosTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div id="app-footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/modules/config.js"></script>
+    <script src="js/modules/data/appData.js"></script>
+    <script src="js/modules/utils.js"></script>
+    <script src="js/modules/models/AccesoModel.js"></script>
+    <script src="js/modules/data/DataStore.js"></script>
+    <script src="js/modules/models/AuthModel.js"></script>
+    <script src="js/modules/components/Layout.js"></script>
+    <script src="js/modules/components/Footer.js"></script>
+    <script src="js/modules/controllers/UsuariosController.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+:root {
+    --primary-blue: #1E40AF;
+    --primary-blue-light: #3B82F6;
+    --primary-blue-dark: #1E3A8A;
+    --neutral-light: #F8F9FA;
+    --neutral-gray: #6B7280;
+    --neutral-dark: #111827;
+    --gradient-primary: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--neutral-light);
+    color: var(--neutral-dark);
+}

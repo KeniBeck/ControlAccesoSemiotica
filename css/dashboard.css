@@ -1,0 +1,79 @@
+.charts-section {
+    margin-bottom: 3rem;
+}
+
+.teachers-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.teachers-header {
+    display: grid;
+    grid-template-columns: 40px 1fr 2fr 60px;
+    gap: 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--neutral-gray);
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #E5E7EB;
+}
+
+.teachers-row {
+    display: grid;
+    grid-template-columns: 40px 1fr 2fr 60px;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.teachers-row:hover {
+    background-color: #F9FAFB;
+}
+
+.col-num {
+    color: var(--neutral-gray);
+    font-weight: 600;
+}
+
+.col-name {
+    color: var(--neutral-dark);
+    font-weight: 500;
+}
+
+.col-popularity {
+    height: 24px;
+    background-color: #E5E7EB;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.popularity-bar {
+    height: 100%;
+    border-radius: 4px;
+}
+
+.col-percent {
+    text-align: center;
+}
+
+.percent-badge {
+    background-color: #E0F2FE;
+    color: var(--primary-blue);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.line-chart-section {
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .teachers-header,
+    .teachers-row {
+        grid-template-columns: 30px 0.8fr 1.2fr 50px;
+    }
+}
