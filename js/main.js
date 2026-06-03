@@ -47,6 +47,8 @@ function iniciarPaginaInterna(pagina) {
         new UsuariosController();
     } else if (pagina === 'historial.html' && typeof HistorialController !== 'undefined') {
         new HistorialController();
+    } else if (pagina === 'pricing.html' && typeof PricingController !== 'undefined') {
+        new PricingController();
     }
 }
 

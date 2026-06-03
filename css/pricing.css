@@ -1,0 +1,194 @@
+/* =============================================
+   pricing.css — Página de Licencias
+   Sigue el sistema de diseño del proyecto:
+   variables.css + internal.css
+   ============================================= */
+
+/* --- Tarjetas de plan --- */
+.pricing-card {
+    position: relative;
+    border-radius: 16px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(30, 64, 175, 0.15);
+}
+
+.pricing-featured {
+    border: 2px solid var(--primary-blue);
+}
+
+.pricing-popular-tag {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient-primary);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 18px;
+    border-radius: 20px;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+.pricing-badge-wrap {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.pricing-plan-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--neutral-dark);
+}
+
+/* --- Precio --- */
+.pricing-price {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+    margin: 1rem 0 1.5rem;
+    line-height: 1;
+}
+
+.pricing-price span {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--neutral-gray);
+}
+
+/* --- Lista de beneficios --- */
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+}
+
+.pricing-features li {
+    padding: 0.45rem 0;
+    font-size: 0.9rem;
+    color: var(--neutral-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.pricing-features li:last-child {
+    border-bottom: none;
+}
+
+.pricing-features li i.fa-check {
+    color: #10B981;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.pricing-features li.disabled {
+    color: var(--neutral-gray);
+}
+
+.pricing-features li.disabled i.fa-times {
+    color: #D1D5DB;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+/* --- Input cantidad --- */
+.pricing-qty-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing-qty-row .form-control {
+    border-radius: 8px;
+    border-color: #E5E7EB;
+    text-align: center;
+    font-weight: 600;
+}
+
+.pricing-qty-row .form-control:focus {
+    border-color: var(--primary-blue-light);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* --- Tabla comparativa --- */
+.pricing-compare-table thead {
+    background: var(--gradient-primary);
+    color: #fff;
+}
+
+.pricing-compare-table thead th {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 1rem;
+}
+
+.pricing-compare-table tbody td {
+    padding: 0.85rem 1rem;
+}
+
+/* --- Totales --- */
+.pricing-totals {
+    max-width: 380px;
+    margin-left: auto;
+}
+
+.pricing-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #F3F4F6;
+    font-size: 0.95rem;
+    color: var(--neutral-dark);
+}
+
+.pricing-grand-total {
+    border-bottom: none;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+    padding-top: 0.8rem;
+}
+
+/* --- Botones --- */
+.agregar-btn {
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    transition: all 0.2s;
+}
+
+.btn-outline-primary {
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary-blue);
+    color: #fff;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background: var(--primary-blue-dark);
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

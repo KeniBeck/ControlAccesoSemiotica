@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licencias | Control de Acceso</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <link href="css/variables.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/navbar.css" rel="stylesheet">
+    <link href="css/internal.css" rel="stylesheet">
+    <link href="css/pricing.css" rel="stylesheet">
+</head>
+
+<body class="app-page">
+    <div id="app-layout"></div>
+
+    <main class="dashboard-main">
+        <div class="container-fluid">
+
+            <!-- Page Header -->
+            <div class="page-header dashboard-header">
+                <div class="header-info">
+                    <span class="page-icon dashboard-icon">
+                        <i class="fas fa-tags"></i>
+                    </span>
+                    <div>
+                        <h1>Licencias</h1>
+                        <p class="page-subtitle">Administra y adquiere planes de acceso para tu institución</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan Cards -->
+            <div class="row g-4 mb-4">
+
+                <!-- Free -->
+                <div class="col-lg-4">
+                    <div class="content-card pricing-card h-100">
+                        <div class="pricing-badge-wrap">
+                            <span class="pricing-plan-name">Free</span>
+                        </div>
+                        <div class="pricing-price">$0<span>/mes</span></div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> 10 usuarios incluidos</li>
+                            <li><i class="fas fa-check"></i> 2 GB de almacenamiento</li>
+                            <li><i class="fas fa-check"></i> Soporte por email</li>
+                            <li><i class="fas fa-check"></i> Acceso al centro de ayuda</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Acceso privado</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Seguridad avanzada</li>
+                        </ul>
+                        <div class="pricing-qty-row">
+                            <label class="fw-semibold mb-1">Cantidad</label>
+                            <input type="number" class="form-control cantidad" min="1" value="1">
+                        </div>
+                        <button class="btn btn-outline-primary w-100 agregar-btn mt-3"
+                            data-licencia="Free" data-valor="0">
+                            <i class="fas fa-plus me-2"></i>Agregar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pro (destacada) -->
+                <div class="col-lg-4">
+                    <div class="content-card pricing-card pricing-featured h-100">
+                        <div class="pricing-popular-tag">Más popular</div>
+                        <div class="pricing-badge-wrap">
+                            <span class="pricing-plan-name">Pro</span>
+                        </div>
+                        <div class="pricing-price">$15<span>/mes</span></div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> 20 usuarios incluidos</li>
+                            <li><i class="fas fa-check"></i> 10 GB de almacenamiento</li>
+                            <li><i class="fas fa-check"></i> Soporte prioritario por email</li>
+                            <li><i class="fas fa-check"></i> Acceso al centro de ayuda</li>
+                            <li><i class="fas fa-check"></i> Acceso privado</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Seguridad avanzada</li>
+                        </ul>
+                        <div class="pricing-qty-row">
+                            <label class="fw-semibold mb-1">Cantidad</label>
+                            <input type="number" class="form-control cantidad" min="1" value="1">
+                        </div>
+                        <button class="btn btn-primary w-100 agregar-btn mt-3"
+                            data-licencia="Pro" data-valor="15">
+                            <i class="fas fa-plus me-2"></i>Agregar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="col-lg-4">
+                    <div class="content-card pricing-card h-100">
+                        <div class="pricing-badge-wrap">
+                            <span class="pricing-plan-name">Enterprise</span>
+                        </div>
+                        <div class="pricing-price">$29<span>/mes</span></div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> 30 usuarios incluidos</li>
+                            <li><i class="fas fa-check"></i> 15 GB de almacenamiento</li>
+                            <li><i class="fas fa-check"></i> Soporte por teléfono y email</li>
+                            <li><i class="fas fa-check"></i> Acceso al centro de ayuda</li>
+                            <li><i class="fas fa-check"></i> Acceso privado</li>
+                            <li><i class="fas fa-check"></i> Seguridad avanzada</li>
+                        </ul>
+                        <div class="pricing-qty-row">
+                            <label class="fw-semibold mb-1">Cantidad</label>
+                            <input type="number" class="form-control cantidad" min="1" value="1">
+                        </div>
+                        <button class="btn btn-outline-primary w-100 agregar-btn mt-3"
+                            data-licencia="Enterprise" data-valor="29">
+                            <i class="fas fa-plus me-2"></i>Agregar
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Compare Plans Table -->
+            <div class="content-card mb-4">
+                <h3><i class="fas fa-table me-2"></i>Comparar planes</h3>
+                <div class="table-responsive">
+                    <table class="data-table pricing-compare-table text-center">
+                        <thead>
+                            <tr>
+                                <th class="text-start">Característica</th>
+                                <th>Free</th>
+                                <th>Pro</th>
+                                <th>Enterprise</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-start fw-semibold">Acceso público</td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start fw-semibold">Acceso privado</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start fw-semibold">Permisos</td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start fw-semibold">Compartir</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start fw-semibold">Miembros ilimitados</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start fw-semibold">Seguridad avanzada</td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td><i class="fas fa-times text-muted"></i></td>
+                                <td><i class="fas fa-check text-success"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Resumen de licencias -->
+            <div class="content-card">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3 class="mb-0"><i class="fas fa-receipt me-2"></i>Resumen de licencias</h3>
+                    <button class="btn btn-outline-danger btn-sm" id="btnLimpiar">
+                        <i class="fas fa-trash me-1"></i>Limpiar
+                    </button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table text-center">
+                        <thead>
+                            <tr>
+                                <th>Licencia</th>
+                                <th>Valor unitario</th>
+                                <th>Cantidad</th>
+                                <th>Total por licencia</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaLicencias">
+                            <tr id="filaVacia">
+                                <td colspan="5" class="text-muted py-4">
+                                    <i class="fas fa-inbox fa-2x mb-2 d-block"></i>
+                                    Aún no has agregado licencias
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pricing-totals mt-4">
+                    <div class="pricing-total-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="pricing-total-row">
+                        <span>IVA (19%)</span>
+                        <span id="iva">$0.00</span>
+                    </div>
+                    <div class="pricing-total-row pricing-grand-total">
+                        <span>Total</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                    <button class="btn btn-primary w-100 mt-3" id="btnComprar" disabled>
+                        <i class="fas fa-shopping-cart me-2"></i>Confirmar compra
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="app-footer"></div>
+
+    <!-- Scripts del proyecto -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/modules/data/AppData.js"></script>
+    <script src="js/modules/models/AuthModel.js"></script>
+    <script src="js/modules/config.js"></script>
+    <script src="js/modules/utils.js"></script>
+    <script src="js/modules/components/Layout.js"></script>
+    <script src="js/modules/components/Footer.js"></script>
+    <script src="js/modules/controllers/PricingController.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
