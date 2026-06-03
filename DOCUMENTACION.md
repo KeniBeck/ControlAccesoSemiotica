@@ -1,4 +1,4 @@
-# Documentación técnica — SCID / AcesoSeguro Educativo
+# Documentación técnica — SCID / Control de Acceso
 
 Proyecto de asignatura — Ingeniería Informática.  
 Plataforma web para el control de ingreso y salida de docentes (Policlínico Jaime Isaza Cadavid, sede Apartadó).

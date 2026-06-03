@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios | Control de Acceso</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/variables.css" rel="stylesheet">
+    <link href="css/darkmode.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/navbar.css" rel="stylesheet">
+    <link href="css/internal.css" rel="stylesheet">
+    <style>
+        .star-btn { background: none; border: none; color: #D1D5DB; padding: 2px 4px; font-size: 1.3rem; transition: color 0.15s; }
+        .star-btn.active, .star-btn:hover { color: #F59E0B; }
+        .star-btn i { pointer-events: none; }
+    </style>
+</head>
+<body class="app-page">
+<div id="app-layout"></div>
+
+<main class="dashboard-main">
+    <div class="container-fluid">
+        <div class="page-header dashboard-header">
+            <div class="header-info">
+                <span class="page-icon dashboard-icon"><i class="fas fa-comments"></i></span>
+                <div>
+                    <h1>Comentarios y Calificaciones</h1>
+                    <p class="page-subtitle">Comparte tu experiencia con el sistema</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario nuevo comentario -->
+        <div class="content-card mb-4">
+            <h3 class="mb-4"><i class="fas fa-plus-circle me-2"></i>Nuevo comentario</h3>
+            <form id="formComentario" novalidate>
+                <input type="hidden" id="ratingValue" value="0">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Calificación *</label>
+                    <div id="nuevaCalificacion" class="mb-1"></div>
+                    <div class="text-muted" style="font-size:0.82rem;">Haz clic en las estrellas para calificar</div>
+                </div>
+                <div class="mb-3">
+                    <label for="txtComentario" class="form-label fw-semibold">Comentario *</label>
+                    <textarea class="form-control" id="txtComentario" rows="4"
+                        placeholder="Escribe aquí tu comentario sobre el sistema, el servicio o la experiencia de uso..."></textarea>
+                    <div class="invalid-feedback">El comentario no puede estar vacío</div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane me-2"></i>Publicar comentario
+                </button>
+            </form>
+        </div>
+
+        <!-- Tabla de comentarios -->
+        <div class="content-card">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="mb-0"><i class="fas fa-list-alt me-2"></i>Comentarios publicados</h3>
+                <span class="badge bg-primary" id="contadorComentarios">0</span>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Autor</th>
+                            <th>Comentario</th>
+                            <th>Calificación</th>
+                            <th>Fecha y hora</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaComentarios">
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-4">
+                                <i class="fas fa-comments fa-2x d-block mb-2"></i>
+                                Aún no hay comentarios. ¡Sé el primero!
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/modules/config.js"></script>
+<script src="js/modules/data/appData.js"></script>
+<script src="js/modules/utils.js"></script>
+<script src="js/modules/models/AccesoModel.js"></script>
+<script src="js/modules/data/DataStore.js"></script>
+<script src="js/modules/models/AuthModel.js"></script>
+<script src="js/modules/components/Layout.js"></script>
+<script src="js/modules/components/Footer.js"></script>
+<script src="js/modules/controllers/ConfigController.js"></script>
+<script src="js/modules/controllers/ComentariosController.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+// Actualizar contador después de cada render
+const _origRender = ComentariosController.renderComentarios.bind(ComentariosController);
+ComentariosController.renderComentarios = function() {
+    _origRender();
+    $('#contadorComentarios').text(this.comentarios.length);
+};
+</script>
+</body>
+</html>

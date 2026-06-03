@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago con Tarjeta | Control de Acceso</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/variables.css" rel="stylesheet">
+    <link href="css/darkmode.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/navbar.css" rel="stylesheet">
+    <link href="css/internal.css" rel="stylesheet">
+    <link href="css/forms.css" rel="stylesheet">
+    <style>
+        .payment-card {
+            max-width: 620px;
+            margin: 0 auto;
+        }
+        .card-preview {
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            padding: 1.5rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            min-height: 160px;
+            position: relative;
+            overflow: hidden;
+        }
+        .card-preview::before {
+            content: '';
+            position: absolute;
+            top: -40px; right: -40px;
+            width: 160px; height: 160px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+        }
+        .card-number-display {
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            margin: 1rem 0 0.5rem;
+            font-family: 'Courier New', monospace;
+        }
+        #franquicia-badge {
+            display: none;
+            padding: 4px 14px;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .resumen-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color, #E5E7EB);
+        }
+        .resumen-row:last-child { border-bottom: none; }
+    </style>
+</head>
+<body class="app-page">
+<div id="app-layout"></div>
+
+<main class="dashboard-main">
+    <div class="container-fluid">
+        <div class="page-header dashboard-header">
+            <div class="header-info">
+                <span class="page-icon dashboard-icon"><i class="fas fa-credit-card"></i></span>
+                <div>
+                    <h1>Formulario de Pago</h1>
+                    <p class="page-subtitle">Completa los datos para procesar tu compra</p>
+                </div>
+            </div>
+            <a href="pricing.html" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Volver a Licencias
+            </a>
+        </div>
+
+        <div class="payment-card">
+            <!-- Total a pagar -->
+            <div class="content-card mb-4 text-center">
+                <p class="text-muted mb-1">Total a pagar</p>
+                <h2 class="mb-0" style="color:var(--primary-blue)" id="pago-total-display">$0.00</h2>
+            </div>
+
+            <!-- Vista previa de tarjeta -->
+            <div class="card-preview">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <p class="mb-0" style="font-size:0.78rem;opacity:0.7;">Tarjeta de crédito</p>
+                    </div>
+                    <span id="franquicia-badge">
+                        <span id="franquicia-icono"></span>
+                        <span id="franquicia-nombre"></span>
+                    </span>
+                </div>
+                <div class="card-number-display" id="card-number-display">**** **** **** ****</div>
+                <div style="font-size:0.85rem;opacity:0.85;" id="card-name-display">NOMBRE DEL TITULAR</div>
+            </div>
+
+            <!-- Formulario -->
+            <div class="content-card">
+                <form id="formPago" novalidate>
+
+                    <div class="row g-3">
+                        <!-- Cuotas -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Número de cuotas * <small class="text-muted">(máx. 10)</small></label>
+                            <input type="number" class="form-control" id="pago-cuotas" min="1" max="10" placeholder="1 – 10">
+                            <div class="invalid-feedback">Ingresa entre 1 y 10 cuotas</div>
+                        </div>
+
+                        <!-- Valor cuota -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Valor por cuota</label>
+                            <input type="text" class="form-control" id="pago-valor-cuota" readonly placeholder="Se calcula automáticamente">
+                        </div>
+
+                        <!-- Nombre -->
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Nombre del titular *</label>
+                            <input type="text" class="form-control" id="pago-nombre" placeholder="Nombre completo">
+                            <div class="invalid-feedback">El nombre es requerido</div>
+                        </div>
+
+                        <!-- Número tarjeta -->
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">
+                                Número de tarjeta *
+                                <span id="franquicia-badge-inline" class="ms-2" style="display:none;font-size:0.78rem;padding:2px 10px;border-radius:12px;color:#fff;background:#1E40AF;"></span>
+                            </label>
+                            <input type="text" class="form-control" id="pago-tarjeta"
+                                   placeholder="XXXX-XXXX-XXXX-XXXX" maxlength="19">
+                            <div class="invalid-feedback">Ingresa 16 dígitos en formato XXXX-XXXX-XXXX-XXXX</div>
+                            <div class="form-text">
+                                Visa (4…) · MasterCard (5…) · American Express (3…) · Diners Club (7…)
+                            </div>
+                        </div>
+
+                        <!-- CVV -->
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Código de seguridad * <small class="text-muted">(4 dígitos)</small></label>
+                            <input type="text" class="form-control" id="pago-cvv" maxlength="4" placeholder="0000">
+                            <div class="invalid-feedback">El CVV debe tener 4 dígitos</div>
+                        </div>
+
+                        <!-- Mes expiración -->
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Mes de expiración *</label>
+                            <select class="form-select" id="pago-mes">
+                                <option value="">Mes</option>
+                            </select>
+                            <div class="invalid-feedback">Selecciona el mes</div>
+                        </div>
+
+                        <!-- Año expiración -->
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Año de expiración *</label>
+                            <select class="form-select" id="pago-anio">
+                                <option value="">Año</option>
+                            </select>
+                            <div class="invalid-feedback">Selecciona el año</div>
+                        </div>
+
+                        <!-- Dirección -->
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Dirección de facturación *</label>
+                            <input type="text" class="form-control" id="pago-direccion" placeholder="Calle 45 # 50-20, Ap. 301">
+                            <div class="invalid-feedback">La dirección es requerida</div>
+                        </div>
+
+                        <!-- Ciudad -->
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Ciudad *</label>
+                            <input type="text" class="form-control" id="pago-ciudad" placeholder="Medellín">
+                            <div class="invalid-feedback">La ciudad es requerida</div>
+                        </div>
+
+                        <div class="col-12 mt-2">
+                            <button type="submit" class="btn btn-primary w-100 py-2">
+                                <i class="fas fa-lock me-2"></i>Pagar ahora
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal Resumen de Compra -->
+<div class="modal fade" id="modalResumen" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="background:var(--primary-blue);color:#fff;">
+                <h5 class="modal-title"><i class="fas fa-check-circle me-2"></i>Pago realizado con éxito</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <h6 class="fw-bold mb-3 text-muted">RESUMEN DE LA COMPRA</h6>
+                <div class="resumen-row"><span>Fecha</span><strong id="resumen-fecha"></strong></div>
+                <div class="resumen-row"><span>Hora</span><strong id="resumen-hora"></strong></div>
+                <div class="resumen-row"><span>Total pagado</span><strong id="resumen-total" style="color:var(--primary-blue)"></strong></div>
+                <div class="resumen-row"><span>Cuotas</span><strong id="resumen-cuotas"></strong></div>
+                <div class="resumen-row"><span>Valor por cuota</span><strong id="resumen-valor-cuota"></strong></div>
+                <div class="resumen-row"><span>Tarjeta</span><strong id="resumen-ultimos"></strong></div>
+                <div class="resumen-row"><span>Franquicia</span><strong id="resumen-franquicia"></strong></div>
+            </div>
+            <div class="modal-footer">
+                <a href="dashboard.html" class="btn btn-primary w-100">
+                    <i class="fas fa-home me-2"></i>Ir al Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="app-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/modules/config.js"></script>
+<script src="js/modules/data/appData.js"></script>
+<script src="js/modules/utils.js"></script>
+<script src="js/modules/models/AccesoModel.js"></script>
+<script src="js/modules/data/DataStore.js"></script>
+<script src="js/modules/models/AuthModel.js"></script>
+<script src="js/modules/components/Layout.js"></script>
+<script src="js/modules/components/Footer.js"></script>
+<script src="js/modules/controllers/ConfigController.js"></script>
+<script src="js/modules/controllers/PagoController.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+// Actualizar vista previa de tarjeta en tiempo real
+$(document).ready(function() {
+    $('#pago-tarjeta').on('input', function() {
+        const v = $(this).val().replace(/-/g,'').padEnd(16,'*');
+        const groups = v.match(/.{1,4}/g) || ['****','****','****','****'];
+        $('#card-number-display').text(groups.join(' '));
+    });
+    $('#pago-nombre').on('input', function() {
+        const v = $(this).val().toUpperCase() || 'NOMBRE DEL TITULAR';
+        $('#card-name-display').text(v);
+    });
+});
+</script>
+</body>
+</html>

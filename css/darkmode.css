@@ -1,0 +1,201 @@
+/* ============================================================
+   darkmode.css  –  Soporte modo oscuro y tamaño de fuente
+   ============================================================ */
+
+/* ---------- Variables globales modo claro (default) ---------- */
+:root {
+    --bg-page:        #F5F7FA;
+    --bg-card:        #FFFFFF;
+    --bg-navbar:      #FFFFFF;
+    --bg-sidebar:     #FFFFFF;
+    --bg-input:       #FFFFFF;
+    --text-primary:   #111827;
+    --text-secondary: #6B7280;
+    --border-color:   #E5E7EB;
+    --hover-bg:       #EFF6FF;
+    --table-head-bg:  #F9FAFB;
+    --shadow-color:   rgba(30, 64, 175, 0.06);
+}
+
+/* ---------- Variables modo oscuro ---------- */
+body.dark-mode {
+    --bg-page:        #0F172A;
+    --bg-card:        #1E293B;
+    --bg-navbar:      #1E293B;
+    --bg-sidebar:     #1E293B;
+    --bg-input:       #2D3748;
+    --text-primary:   #F1F5F9;
+    --text-secondary: #94A3B8;
+    --border-color:   #334155;
+    --hover-bg:       #1E3A5F;
+    --table-head-bg:  #273549;
+    --shadow-color:   rgba(0,0,0,0.4);
+}
+
+/* ---------- Aplicación de variables ---------- */
+body {
+    background-color: var(--bg-page) !important;
+    color: var(--text-primary) !important;
+}
+
+.navbar {
+    background: var(--bg-navbar) !important;
+    border-bottom-color: var(--border-color) !important;
+    box-shadow: 0 2px 8px var(--shadow-color) !important;
+}
+
+.sidebar {
+    background: var(--bg-sidebar) !important;
+}
+
+.sidebar-header, .sidebar-footer {
+    border-color: var(--border-color) !important;
+}
+
+.sidebar-link {
+    color: var(--text-primary) !important;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+    background: var(--hover-bg) !important;
+}
+
+.content-card, .chart-card, .stat-box {
+    background: var(--bg-card) !important;
+    border-color: var(--border-color) !important;
+}
+
+.data-table thead th {
+    background: var(--table-head-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+.data-table tbody td {
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+.data-table tbody tr:hover {
+    background: var(--hover-bg) !important;
+}
+
+.form-control, .form-select {
+    background: var(--bg-input) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+.form-control::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+.form-label {
+    color: var(--text-primary) !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.page-header h1,
+.brand-text,
+.stat-label,
+.stat-number {
+    color: var(--text-primary) !important;
+}
+
+p, span, td, th, label, li {
+    color: var(--text-primary) !important;
+}
+
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+.page-subtitle {
+    color: var(--text-secondary) !important;
+}
+
+.navbar-user {
+    border-color: var(--border-color) !important;
+    background: var(--bg-input) !important;
+}
+
+.user-label {
+    color: var(--text-secondary) !important;
+}
+
+.hamburger-btn {
+    background: var(--bg-input) !important;
+    color: var(--text-primary) !important;
+}
+
+.sidebar-close {
+    background: var(--bg-input) !important;
+    color: var(--text-secondary) !important;
+}
+
+.pricing-card, .pricing-featured {
+    background: var(--bg-card) !important;
+    border-color: var(--border-color) !important;
+}
+
+.pricing-features li {
+    border-color: var(--border-color) !important;
+}
+
+input[type="number"].form-control {
+    background: var(--bg-input) !important;
+    color: var(--text-primary) !important;
+}
+
+.modal-content {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
+
+.modal-header, .modal-footer {
+    border-color: var(--border-color) !important;
+}
+
+.profile-section, .config-section {
+    background: var(--bg-card) !important;
+}
+
+/* ---------- Toggle switch ---------- */
+.theme-toggle-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 28px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #CBD5E1;
+    border-radius: 28px;
+    transition: 0.3s;
+}
+
+.slider:before {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+input:checked + .slider { background: var(--primary-blue); }
+input:checked + .slider:before { transform: translateX(26px); }

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración | Control de Acceso</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/variables.css" rel="stylesheet">
+    <link href="css/darkmode.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/navbar.css" rel="stylesheet">
+    <link href="css/internal.css" rel="stylesheet">
+</head>
+
+<body class="app-page">
+    <div id="app-layout"></div>
+
+    <main class="dashboard-main">
+        <div class="container-fluid">
+            <div class="page-header dashboard-header">
+                <div class="header-info">
+                    <span class="page-icon dashboard-icon"><i class="fas fa-cog"></i></span>
+                    <div>
+                        <h1>Configuración</h1>
+                        <p class="page-subtitle">Personaliza la apariencia de la aplicación</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- Dark/Light mode -->
+                <div class="col-lg-6">
+                    <div class="content-card">
+                        <h3 class="mb-1"><i class="fas fa-adjust me-2"></i>Tema de la aplicación</h3>
+                        <p class="text-muted mb-4" style="font-size:0.9rem;">
+                            Cambia entre el modo claro y oscuro. El cambio se aplica en todas las páginas.
+                        </p>
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fas fa-sun text-warning fs-4"></i>
+                            <div class="theme-toggle-wrap">
+                                <label class="switch mb-0">
+                                    <input type="checkbox" id="darkModeToggle">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <i class="fas fa-moon text-primary fs-4"></i>
+                            <span id="themeLabel" class="ms-2 fw-semibold">Modo claro</span>
+                        </div>
+                        <p class="text-muted mt-3" style="font-size:0.8rem;">
+                            <i class="fas fa-info-circle me-1"></i>
+                            La preferencia se guarda automáticamente con localStorage.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tamaño de fuente -->
+                <div class="col-lg-6">
+                    <div class="content-card">
+                        <h3 class="mb-1"><i class="fas fa-text-height me-2"></i>Tamaño de fuente</h3>
+                        <p class="text-muted mb-4" style="font-size:0.9rem;">
+                            Ajusta el tamaño del texto en toda la aplicación (12px – 24px).
+                        </p>
+
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <label class="form-label mb-0">Tamaño actual:</label>
+                                <strong id="fontSizeValue">16px</strong>
+                            </div>
+                            <input type="range" class="form-range" id="fontSizeRange" min="12" max="24" step="1"
+                                value="16">
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">12px</small>
+                                <small class="text-muted">24px</small>
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3" style="max-width:200px;">
+                            <span class="input-group-text"><i class="fas fa-font"></i></span>
+                            <input type="number" class="form-control" id="fontSizeInput" min="12" max="24" value="16">
+                            <span class="input-group-text">px</span>
+                        </div>
+
+                        <button class="btn btn-primary" id="btnSaveFontSize">
+                            <i class="fas fa-save me-2"></i>Guardar tamaño
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Reset -->
+                <div class="col-12">
+                    <div class="content-card">
+                        <h3 class="mb-1 text-danger"><i class="fas fa-redo me-2"></i>Restablecer configuración</h3>
+                        <p class="text-muted mb-3" style="font-size:0.9rem;">
+                            Vuelve a los valores predeterminados: modo claro, fuente 16px.
+                        </p>
+                        <button class="btn btn-outline-danger" id="btnResetConfig">
+                            <i class="fas fa-undo me-2"></i>Restablecer todo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="app-footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/modules/config.js"></script>
+    <script src="js/modules/data/appData.js"></script>
+    <script src="js/modules/utils.js"></script>
+    <script src="js/modules/models/AccesoModel.js"></script>
+    <script src="js/modules/data/DataStore.js"></script>
+    <script src="js/modules/models/AuthModel.js"></script>
+    <script src="js/modules/components/Layout.js"></script>
+    <script src="js/modules/components/Footer.js"></script>
+    <script src="js/modules/controllers/ConfigController.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Sync label con toggle
+        $('#darkModeToggle').on('change', function () {
+            $('#themeLabel').text($(this).is(':checked') ? 'Modo oscuro' : 'Modo claro');
+        });
+        // Set inicial del label
+        $(function () {
+            const dm = localStorage.getItem('app_dark_mode') === 'true';
+            $('#themeLabel').text(dm ? 'Modo oscuro' : 'Modo claro');
+        });
+    </script>
+</body>
+
+</html>

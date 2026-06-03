@@ -1,4 +1,4 @@
-# AcesoSeguro Educativo — SCID
+# Control de Acceso — SCID
 
 Prototipo web para control de ingreso y salida de docentes (proyecto de asignatura).
 

@@ -131,8 +131,12 @@ class PricingController {
 
     confirmarCompra() {
         if (this.filas.length === 0) return;
-        this.mostrarAlerta('¡Compra confirmada! Las licencias han sido procesadas.', 'success');
-        setTimeout(() => this.limpiarTabla(), 2500);
+
+        const iva   = this.subtotal * 0.19;
+        const total = this.subtotal + iva;
+        localStorage.setItem('pago_total', total.toFixed(2));
+
+        window.location.href = 'pago.html';
     }
 
     /**

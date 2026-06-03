@@ -1,4 +1,10 @@
 function iniciarApp() {
+    //definir configuracion global para tema oscuro, tamaño de fuente
+    const darkMode = localStorage.getItem('app_dark_mode') === 'true';
+    const fontSize = localStorage.getItem('app_font_size');
+    if (darkMode) $('body').addClass('dark-mode');
+    if (fontSize) $('html').css('font-size', fontSize + 'px');
+    
     if (typeof APP_CONFIG === 'undefined') {
         console.error('No se cargó config.js');
         return;
@@ -7,12 +13,12 @@ function iniciarApp() {
     const pagina = getCurrentPage();
     const esInterna = APP_CONFIG.INTERNAL_PAGES.indexOf(pagina) !== -1;
 
-    window.logout = function() {
+    window.logout = function () {
         AuthModel.clearSession();
         window.location.href = APP_CONFIG.LOGIN_URL;
     };
 
-    window.getCurrentUser = function() {
+    window.getCurrentUser = function () {
         return AuthModel.getSession();
     };
 
@@ -41,6 +47,14 @@ function iniciarPaginaInterna(pagina) {
         new DashboardController();
     } else if (pagina === 'ingreso.html' && typeof IngresoController !== 'undefined') {
         new IngresoController();
+    } else if (pagina === 'perfil.html' && typeof PerfilController !== 'undefined') {
+        new PerfilController();
+    } else if (pagina === 'comentarios.html' && typeof ComentariosController !== 'undefined') {
+        new ComentariosController();
+    } else if (pagina === 'configuracion.html' && typeof ConfigController !== 'undefined') {
+        new ConfigController();
+    } else if (pagina === 'pago.html' && typeof PagoController !== 'undefined') {
+        new PagoController();
     } else if (pagina === 'reportes.html' && typeof ReportesController !== 'undefined') {
         new ReportesController();
     } else if (pagina === 'usuarios.html' && typeof UsuariosController !== 'undefined') {
